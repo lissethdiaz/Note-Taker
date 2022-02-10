@@ -1,13 +1,33 @@
 const router = require('express').Router();
-const updateDb = require('../../lib/notes')
+const fs = require('fs')
+const util = require('util');
 const { v4: uuidv4 } = require('uuid');
-const { notes } = require('../../db/db.json');
 
-router.post('/notes', (req, res) => {
-  req.body.id = uuidv4();
+const readFileAsync = util.promisify(fs.readFile);
+const writeFileAsync = util.promisify(fs.writeFile);
 
-  const newNote = updateDb(req.body, notes);
-  res.json(newNote);
+
+// GET route
+router.get('/notes', (req, res) => {
+  readFileAsync('./db/db.json', 'utf8').then(data => {
+    notes = [].concat(JSON.parse(data))
+    res.json(notes);
+  })
 });
 
-module.exports = router;
+// POST route
+router.post('/notes', (req, res) => {
+  req.body.id = uuidv4();
+  const newNote = req.body;
+  readFileAsync('./db/db.json', 'utf8').then( data => {
+    const notes = [].concat(JSON.parse(data));
+    
+    notes.push(newNote);
+    return notes
+  }).then( notes => {
+    writeFileAsync('./db/db.json', JSON.stringify(notes))
+    res.json(newNote);
+  })
+});
+
+module.exports = router
