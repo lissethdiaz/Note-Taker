@@ -46,5 +46,5 @@
   https://frozen-harbor-05222.herokuapp.com/
 
   ## Preview Screenshots
-  ![](assets/images/screenshot1.png)
-  ![](assets/images/screenshot2.png)
+  ![](public/assets/images/screenshot1.png)
+  ![](public/assets/images/screenshot2.png)
