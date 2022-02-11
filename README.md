@@ -41,3 +41,10 @@
   If you have questions:
   * [Github](https://github.com/lissethdiaz)
   * [Email](mailto:lissdiaz15@gmail.com) 
+
+  ## Deployed Link
+  https://frozen-harbor-05222.herokuapp.com/
+
+  ## Preview Screenshots
+  ![](assets/images/screenshot1.png)
+  ![](assets/images/screenshot2.png)
