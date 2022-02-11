@@ -6,8 +6,6 @@ const { v4: uuidv4 } = require('uuid');
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
-
-// GET route
 router.get('/notes', (req, res) => {
   readFileAsync('./db/db.json', 'utf8').then(data => {
     notes = [].concat(JSON.parse(data))
@@ -15,7 +13,6 @@ router.get('/notes', (req, res) => {
   })
 });
 
-// POST route
 router.post('/notes', (req, res) => {
   req.body.id = uuidv4();
   const newNote = req.body;
@@ -29,5 +26,6 @@ router.post('/notes', (req, res) => {
     res.json(newNote);
   })
 });
+
 
 module.exports = router
